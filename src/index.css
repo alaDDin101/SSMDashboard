@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+    --primary: 142 50% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 15%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 35 90% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 142 50% 32%;
+    --radius: 0.5rem;
+    --sidebar-bg: 220 25% 12%;
+    --sidebar-fg: 220 10% 85%;
+    --sidebar-active: 142 50% 40%;
+    --sidebar-hover: 220 20% 18%;
+    --success: 142 60% 40%;
+    --warning: 35 90% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    direction: rtl;
+  }
+  body {
+    @apply bg-background text-foreground font-cairo;
+    direction: rtl;
+  }
+  #root {
+    direction: rtl;
+  }
+}
+
+/* Rich article editor (Quill): RTL body, LTR toolbar controls */
+.article-rich-editor .ql-editor {
+  direction: rtl;
+  text-align: right;
+  font-family: Cairo, ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+/* Undo Tailwind preflight inside Quill (preflight removes list markers & heading sizes) */
+.article-rich-editor .ql-editor ul,
+.article-rich-editor .ql-editor ol {
+  list-style-position: outside;
+  margin-block: 0.5em;
+  padding-inline-start: 1.75em;
+}
+.article-rich-editor .ql-editor ul {
+  list-style-type: disc;
+}
+.article-rich-editor .ql-editor ol {
+  list-style-type: decimal;
+}
+.article-rich-editor .ql-editor li {
+  margin-block: 0.2em;
+}
+.article-rich-editor .ql-editor li::marker {
+  color: hsl(var(--muted-foreground));
+}
+
+.article-rich-editor .ql-editor h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-block: 0.5em 0.35em;
+  line-height: 1.2;
+}
+.article-rich-editor .ql-editor h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-block: 0.55em 0.35em;
+  line-height: 1.25;
+}
+.article-rich-editor .ql-editor h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-block: 0.5em 0.3em;
+  line-height: 1.3;
+}
+.article-rich-editor .ql-editor h4 {
+  font-size: 1.125em;
+  font-weight: 600;
+  margin-block: 0.45em 0.25em;
+}
+.article-rich-editor .ql-editor h5,
+.article-rich-editor .ql-editor h6 {
+  font-size: 1em;
+  font-weight: 600;
+  margin-block: 0.4em 0.2em;
+}
+
+/* Quill “size” picker (works with snow theme class names) */
+.article-rich-editor .ql-editor .ql-size-small {
+  font-size: 0.875em;
+}
+.article-rich-editor .ql-editor .ql-size-large {
+  font-size: 1.3125em;
+}
+.article-rich-editor .ql-editor .ql-size-huge {
+  font-size: 1.75em;
+}
+
+.article-rich-editor .ql-editor blockquote {
+  border-inline-start: 4px solid hsl(var(--border));
+  margin-block: 0.75em;
+  padding-inline-start: 1em;
+  color: hsl(var(--muted-foreground));
+}
+
+.article-rich-editor .ql-toolbar.ql-snow {
+  direction: ltr;
+}
+.article-rich-editor .ql-container.ql-snow {
+  border: 0;
+}
+
+/* Quill “size” spans inside prose preview / slider HTML (Tailwind Typography does not know these) */
+.prose .ql-size-small,
+.article-rich-editor .ql-editor .ql-size-small {
+  font-size: 0.875em;
+}
+.prose .ql-size-large,
+.article-rich-editor .ql-editor .ql-size-large {
+  font-size: 1.3125em;
+}
+.prose .ql-size-huge,
+.article-rich-editor .ql-editor .ql-size-huge {
+  font-size: 1.75em;
+}
